@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me.jinken</groupId>
+    <artifactId>mapreduce</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>mapreduce</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <encoding>UTF-8</encoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <junit.verion>3.8.1</junit.verion>
+        <cdh.version>2.6.0-cdh5.7.1</cdh.version>
+        <hbase.version>1.2.0-cdh5.7.1</hbase.version>
+        <hbase.index.version>1.5-cdh5.7.1</hbase.index.version>
+        <hive.version>1.1.0-cdh5.7.1</hive.version>
+        <spark.version>1.6.0-cdh5.7.1</spark.version>
+        <axis2.version>1.6.2</axis2.version>
+        <spring.verion>3.0.5.RELEASE</spring.verion>
+        <htrace.verion>3.0.4</htrace.verion>
+        <dom4j.verion>1.6.1</dom4j.verion>
+        <xmlbeans.version>2.4.0</xmlbeans.version>
+    </properties>
+
+    <build>
+        <finalName>mapreduce</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    <repositories>
+        <!-- 阿里巴巴发布版本仓库 -->
+        <repository>
+            <id>alibaba-opensource</id>
+            <name>local private alibaba-opensource</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <!-- 阿里巴巴快照版本仓库 -->
+        <!-- <repository>
+             <id>alibaba-opensource-snapshot</id>
+             <name>alibaba-opensource-snapshot</name>
+             <url>http://code.alibabatech.com/mvn/snapshots/</url>
+             <layout>default</layout>
+             <snapshots>
+                 <enabled>false</enabled>
+             </snapshots>
+         </repository>-->
+        <!-- cloudera cdh  -->
+        <repository>
+            <id>mapreduce</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </repository>
+
+    </repositories>
+
+    <dependencies>
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.verion}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--axis2 -->
+        <!-- axis2 -->
+        <!--<dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>-->
+
+        <!-- axis2-transport-http -->
+        <!--<dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-http</artifactId>
+            <version>${axis2.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <!-- axis2-transport-local -->
+        <!--<dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-local</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>-->
+
+        <!-- axis2-xmlbeans -->
+        <!--<dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-xmlbeans</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>-->
+
+        <!-- axis2-spring -->
+        <!--<dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-spring</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>-->
+
+        <!-- axis2-jaxws -->
+       <!-- <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-jaxws</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>-->
+
+        <!-- xmlbeans -->
+        <!-- <dependency>
+             <groupId>org.apache.xmlbeans</groupId>
+             <artifactId>xmlbeans</artifactId>
+             <version>${xmlbeans.version}</version>
+         </dependency>-->
+
+        <!-- spring-web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.verion}</version>
+        </dependency>
+        <!-- spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.verion}</version>
+        </dependency>
+
+        <!--oracle -->
+        <!-- ojdbc6 -->
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ojdbc61</artifactId>
+            <version>11</version>
+            <scope>system</scope>
+            <systemPath>E:/workspace/lib/ojdbc/ojdbc6.jar</systemPath>
+        </dependency>
+
+        <!-- Hadoop 开始 -->
+        <!-- hadoop-client -->
+
+        <!--<dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-client</artifactId>
+                    <version>${cdh.version}</version>
+                </dependency>
+                &lt;!&ndash; hadoop-annotations &ndash;&gt;
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-annotations</artifactId>
+                    <version>${cdh.version}</version>
+                </dependency>
+                &lt;!&ndash; hadoop-yarn-client &ndash;&gt;
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-yarn-client</artifactId>
+                    <version>${cdh.version}</version>
+                </dependency>
+                &lt;!&ndash; hadoop-minicluster &ndash;&gt;
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-minicluster</artifactId>
+                    <version>${cdh.version}</version>
+                </dependency>-->
+
+        <!-- HBase 开始 -->
+        <!-- hbase-annotations -->
+        <!-- <dependency>
+             <groupId>org.apache.hbase</groupId>
+             <artifactId>hbase-annotations</artifactId>
+             <version>${hbase.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <groupId>javax.servlet</groupId>
+                     <artifactId>*</artifactId>
+                 </exclusion>
+             </exclusions>
+         </dependency>-->
+
+        <!-- hbase-common -->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-common</artifactId>
+            <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <!-- hbase-client -->
+       <!-- <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <!-- hbase-server -->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>${hbase.version}</version>
+            &lt;!&ndash; maven排除依赖jar处理 &ndash;&gt;
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <!-- hbase-hadoop-compat -->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-hadoop-compat</artifactId>
+            <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <!-- hbase-prefix-tree -->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-prefix-tree</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+
+        &lt;!&ndash; hbase-protocol &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-protocol</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+
+        &lt;!&ndash; hbase-rest &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-rest</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+
+        &lt;!&ndash; hbase-thrift &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-thrift</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+-->
+        <!-- hbase-secondaryind -->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-secondaryind</artifactId>
+            <version>${hbase.version}</version>
+        </dependency> -->
+
+
+         <!-- hbase-hbase-secondaryindex -->
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-secondaryindex</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>-->
+
+        <!-- HBase indesx 开始 -->
+        <!-- <dependency>
+             <groupId>com.ngdata</groupId>
+             <artifactId>hbase-indexer-cli</artifactId>
+             <version>1.5-cdh5.7.1</version>
+         </dependency>-->
+
+        <!--<dependency>
+            <groupId>com.ngdata</groupId>
+            <artifactId>hbase-indexer-common</artifactId>
+            <version>${hbase.index.version}</version>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>com.ngdata</groupId>
+            <artifactId>hbase-indexer-demo</artifactId>
+            <version>${hbase.index.version}</version>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>com.ngdata</groupId>
+            <artifactId>hbase-indexer-dist</artifactId>
+            <version>${hbase.index.version}</version>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>com.ngdata</groupId>
+            <artifactId>hbase-indexer-engine</artifactId>
+            <version>${hbase.index.version}</version>
+        </dependency>-->
+        <!-- <dependency>
+
+             <groupId>com.ngdata</groupId>
+             <artifactId>hbase-indexer-server</artifactId>
+             <version>${hbase.index.version}</version>
+         </dependency>-->
+
+        <!--<dependency>
+            <groupId>com.ngdata</groupId>
+            <artifactId>hbase-indexer-mr</artifactId>
+            <version>${hbase.index.version}</version>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-secondaryindex</artifactId>
+            <version>1.2.0</version>
+        </dependency>-->
+
+        <!-- htrace-core -->
+        <dependency>
+            <groupId>org.htrace</groupId>
+            <artifactId>htrace-core</artifactId>
+            <version>${htrace.verion}</version>
+        </dependency>
+
+        <!-- dom4j -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+        <!-- hive -->
+        <!-- hive-metastore -->
+        <!-- <dependency>
+             <groupId>org.apache.hive</groupId>
+             <artifactId>hive-metastore</artifactId>
+             <version>${hive.version}</version>
+             &lt;!&ndash; maven排除依赖jar处理 &ndash;&gt;
+             <exclusions>
+                 <exclusion>
+                     <groupId>javax.servlet</groupId>
+                     <artifactId>*</artifactId>
+                 </exclusion>
+             </exclusions>
+         </dependency>-->
+
+        <!-- spark -->
+        <!-- spark-core_2.10 -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <!-- spark-sql_2.10 -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <!-- spark-hive_2.10 -->
+       <!-- <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>-->
+
+        <!-- spark-streaming_2.10 -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
