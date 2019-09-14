@@ -33,13 +33,13 @@ public class SecondarySortApp {
             String[] splited = line.split(" ");
             SecondarySort key = new SecondarySort(Integer.valueOf(splited[0]), Integer.valueOf(splited[1]));
 
-            return new Tuple2<SecondarySort, String>(key, line);
+            return new Tuple2<>(key, line);
         });
 
         JavaPairRDD<SecondarySort, String> sorted = pairs.sortByKey(false);
 
         JavaRDD<String> seconderySorted = sorted.map((Function<Tuple2<SecondarySort, String>, String>) sortedContent -> sortedContent._2);
 
-        seconderySorted.foreach((VoidFunction<String>) s -> System.out.println(s));
+        seconderySorted.foreach((VoidFunction<String>) System.out::println);
     }
 }

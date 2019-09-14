@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="SparkApps:jar">
-    <output-path>$PROJECT_DIR$/../打包Jar/Spark</output-path>
+    <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="SparkApps.jar">
       <element id="module-output" name="SparkApps" />
     </root>

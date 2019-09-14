@@ -29,4 +29,3 @@ target/
 out/
 .externalToolBuilders/
 *.iml
-.idea/workspace.xml
