@@ -21,11 +21,25 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Compiled idea file
 .idea/*
 *.idea\*
+*.iml
+
+# Compiled svn file
 .svn/*
-.settings/*
+
+# Eclipse #
+.settings/
+.metadata/
+.classpath
+.project
+
+# Compiled out file
 target/
 out/
+
+# Compiled other
 .externalToolBuilders/
-*.iml
+metastore_db/
