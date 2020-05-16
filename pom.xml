@@ -92,8 +92,6 @@
     </repositories>
 
     <build>
-        <finalName>hiveincr_update</finalName>
-
         <sourceDirectory>src/main/code</sourceDirectory>
         <testSourceDirectory>src/test/code</testSourceDirectory>
         <!--maven打包时如何把包下面的非java文件配置文件也包含，通过resources-resource下配置directory和includes实现 -->
