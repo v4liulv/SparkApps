@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+        <description>MapRedcue 架构名：Yarn-</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>localhost:10020</value>
+        <description>MapReduce JobHistory Server 端口</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>localhost:19888</value>
+        <description>MapReduce JobHistory Web 应用程序 HTTP 端口</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.done-dir</name>
+        <value>/user/hadoop/history/done</value>
+        <description>MapReduce作业运行完之后存放目录</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.intermediate-done-dir</name>
+        <value>/user/hadoop/history/done_intermediate</value>
+        <description>MapReduce作业中作业存放目录</description>
+    </property>
+    <property>
+        <name>yarn.app.mapreduce.am.staging-dir</name>
+        <value>/user</value>
+        <description>MapReduce ApplicationMaster 临时根目录</description>
+    </property>
+    <property>
+        <name>mapreduce.cluster.acls.enabled</name>
+        <value>false</value>
+        <description>Enable Job ACL.</description>
+    </property>
+    <property>
+        <name>yarn.app.mapreduce.am.command-opts</name>
+        <value>-Djava.net.preferIPv4Stack=true</value>
+        <description>传递到 MapReduce ApplicationMaster 的 Java 命令行参数</description>
+    </property>
+    <property>
+        <name>mapreduce.map.java.opts</name>
+        <value>-Djava.net.preferIPv4Stack=true</value>
+        <description>map进程的Java 选项</description>
+    </property>
+    <property>
+        <name>mapreduce.reduce.java.opts</name>
+        <value>-Djava.net.preferIPv4Stack=true</value>
+        <description>reduce进程的Java 选项</description>
+    </property>
+    <property>
+        <name>mapreduce.job.ubertask.enable</name>
+        <value>false</value>
+        <description>是否启用 ubertask 优化，该优化在单个 JVM 内按顺序运行“足够小”的作业</description>
+    </property>
+    <property>
+        <name>mapreduce.map.speculative</name>
+        <value>false</value>
+        <description>map是否启用推理执行，如已启用，将并行执行某些 map 任务的多个实例</description>
+    </property>
+    <property>
+        <name>mapreduce.reduce.speculative</name>
+        <value>false</value>
+        <description>reduce是否启用推理执行，如已启用，将并行执行某些reduce任务的多个实例</description>
+    </property>
+</configuration>

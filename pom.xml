@@ -1,54 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.jinken</groupId>
-    <artifactId>mapreduce</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>mapreduce</name>
+    <groupId>com.bigdata.spark</groupId>
+    <artifactId>spark-example</artifactId>
+    <version>2.1.4</version>
+    <name>spark-example</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <encoding>UTF-8</encoding>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
 
-        <junit.verion>3.8.1</junit.verion>
-        <cdh.version>2.6.0-cdh5.7.1</cdh.version>
-        <hbase.version>1.2.0-cdh5.7.1</hbase.version>
-        <hbase.index.version>1.5-cdh5.7.1</hbase.index.version>
-        <hive.version>1.1.0-cdh5.7.1</hive.version>
-        <spark.version>1.6.0-cdh5.7.1</spark.version>
-        <axis2.version>1.6.2</axis2.version>
-        <spring.verion>3.0.5.RELEASE</spring.verion>
+        <!-- 开发工具版本相关 -->
+        <jdk-version>1.8</jdk-version>
+        <scala.version>2.11.12</scala.version>
+        <maven.version>3.3.9</maven.version>
+        <github.global.server>github</github.global.server>
+
+        <framework.version>1.0.0</framework.version>
+
+        <!-- bugdata -->
+        <hadoop.version>2.7.4</hadoop.version>
+        <hive.version>1.2.2</hive.version>
+        <scala.binary.version>2.11</scala.binary.version>
+        <scala.version>2.11.12</scala.version>
+        <spark-scala-version>2.11</spark-scala-version>
+        <spark.version>2.4.4</spark.version>
+        <hbase.version>1.2.6</hbase.version>
+        <orc-mapreduce.version>1.1.0</orc-mapreduce.version>
+
+        <!-- java wbe ssh -->
+        <servlet.version>3.0-alpha-1</servlet.version>
+        <hibernate.version>5.2.11.Final</hibernate.version>
+        <spring.version>5.0.8.RELEASE</spring.version>
+        <spring.hadoop.version>2.5.0.RELEASE</spring.hadoop.version>
+        <jstl.version>1.2</jstl.version>
+
+        <!--冲突解决 -->
+        <jackson.version>2.9.6</jackson.version>
+        <codehaus.jackson.version>1.8.8</codehaus.jackson.version>
         <htrace.verion>3.0.4</htrace.verion>
-        <dom4j.verion>1.6.1</dom4j.verion>
-        <xmlbeans.version>2.4.0</xmlbeans.version>
+        <netty.version>3.9.9.Final</netty.version>
+        <netty-all.version>4.1.17.Final</netty-all.version>
+        <httpclient.version>4.5.2</httpclient.version>
+        <httpcore.version>4.4.1</httpcore.version>
+        <guava.version>r03</guava.version>
+
+        <!-- 其他Jar包 -->
+        <junit.version>4.12</junit.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <xmlbeans.version>2.6.0</xmlbeans.version>
+        <logback.version>1.2.3</logback.version>
+        <logback-ext-spring.version>0.1.4</logback-ext-spring.version>
+        <ojdbc6.version>11.2.0.3</ojdbc6.version>
+        <fastjson.version>1.1.26</fastjson.version>
+
+        <!--暂时不需要，已经依赖的-->
+        <slf4j.version>1.7.25</slf4j.version>
+        <fileupload.version>1.2.2</fileupload.version>
+        <jsoup.version>1.10.3</jsoup.version>
+        <jaxen.version>1.1.6</jaxen.version>
+        <commons.io.version>2.4</commons.io.version>
+        <commons.lang3.version>3.3.2</commons.lang3.version>
     </properties>
 
-    <build>
-        <finalName>mapreduce</finalName>
-        <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-
-        </plugins>
-    </build>
     <repositories>
-        <!-- 阿里巴巴发布版本仓库 -->
         <repository>
             <id>alibaba-opensource</id>
             <name>local private alibaba-opensource</name>
@@ -60,356 +78,544 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <!-- 阿里巴巴快照版本仓库 -->
-        <!-- <repository>
-             <id>alibaba-opensource-snapshot</id>
-             <name>alibaba-opensource-snapshot</name>
-             <url>http://code.alibabatech.com/mvn/snapshots/</url>
-             <layout>default</layout>
-             <snapshots>
-                 <enabled>false</enabled>
-             </snapshots>
-         </repository>-->
-        <!-- cloudera cdh  -->
-        <repository>
-            <id>mapreduce</id>
-            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-        </repository>
 
+        <repository>
+            <id>maven-repo-master</id>
+            <url>https://raw.githubusercontent.com/v4liulv/maven-repo/master</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
+    <build>
+        <finalName>hiveincr_update</finalName>
+
+        <sourceDirectory>src/main/code</sourceDirectory>
+        <testSourceDirectory>src/test/code</testSourceDirectory>
+        <!--maven打包时如何把包下面的非java文件配置文件也包含，通过resources-resource下配置directory和includes实现 -->
+        <resources>
+            <!-- <resource>
+                 <directory>src/main/java</directory>
+                 <includes>
+                     <include>**/*.*</include>
+                 </includes>
+             </resource>-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources-framework</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <!-- 公共插件，全部子项目都继承 -->
+        <plugins>
+            <!-- Maven Scala 编译 -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>attach-scaladocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>doc-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Java 编译-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>${jdk-version}</source>
+                    <target>${jdk-version}</target>
+                </configuration>
+            </plugin>
+            <!-- Maven github -->
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/master</branch>
+                    <includes>
+                        <include>**</include>
+                    </includes>
+                    <!-- <path>com.sinobest.kshfx</path>-->
+                    <!-- 是否与当前树合并，或者完全替换提交指向的树, 默认为false-->
+                    <merge>true</merge>
+                    <!-- 是否强制进行一个ref更新，默认情况下只会快速前进 -->
+                    <force>true</force>
+                    <!-- 在该站点的根目录下是否总是创造一个.nojekyll文件将。如果您的站点包含任何以下划线开头的文件夹，那么该设置应该启用。-->
+                    <noJekyll>true</noJekyll>
+                    <!-- 对应github上创建的仓库名称 name -->
+                    <repositoryName>maven-repo</repositoryName>
+                    <!-- github 仓库所有者 -->
+                    <repositoryOwner>v4liulv</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven deploy 结合上面的Maven-github将本地工程的部署到远程Maven Github仓库-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo
+                    </altDeploymentRepository>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
     <dependencies>
-        <!-- junit -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.verion}</version>
-            <scope>test</scope>
+            <groupId>com.sinobest</groupId>
+            <artifactId>framework-core</artifactId>
+            <version>${framework.version}</version>
         </dependency>
 
-        <!--axis2 -->
-        <!-- axis2 -->
-        <!--<dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2</artifactId>
-            <version>${axis2.version}</version>
-        </dependency>-->
-
-        <!-- axis2-transport-http -->
-        <!--<dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-transport-http</artifactId>
-            <version>${axis2.version}</version>
+        <!-- hibernate start -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>*</artifactId>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>-->
-
-        <!-- axis2-transport-local -->
-        <!--<dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-transport-local</artifactId>
-            <version>${axis2.version}</version>
-        </dependency>-->
-
-        <!-- axis2-xmlbeans -->
-        <!--<dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-xmlbeans</artifactId>
-            <version>${axis2.version}</version>
-        </dependency>-->
-
-        <!-- axis2-spring -->
-        <!--<dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-spring</artifactId>
-            <version>${axis2.version}</version>
-        </dependency>-->
-
-        <!-- axis2-jaxws -->
-       <!-- <dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-jaxws</artifactId>
-            <version>${axis2.version}</version>
-        </dependency>-->
-
-        <!-- xmlbeans -->
-        <!-- <dependency>
-             <groupId>org.apache.xmlbeans</groupId>
-             <artifactId>xmlbeans</artifactId>
-             <version>${xmlbeans.version}</version>
-         </dependency>-->
-
-        <!-- spring-web -->
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${spring.verion}</version>
+            <version>${spring.version}</version>
         </dependency>
-        <!-- spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.verion}</version>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
         </dependency>
-
-        <!--oracle -->
-        <!-- ojdbc6 -->
         <dependency>
-            <groupId>oracle</groupId>
-            <artifactId>ojdbc61</artifactId>
-            <version>11</version>
-            <scope>system</scope>
-            <systemPath>E:/workspace/lib/ojdbc/ojdbc6.jar</systemPath>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-hadoop</artifactId>
+            <version>${spring.hadoop.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
         </dependency>
 
         <!-- Hadoop 开始 -->
-        <!-- hadoop-client -->
-
-        <!--<dependency>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-client</artifactId>
-                    <version>${cdh.version}</version>
-                </dependency>
-                &lt;!&ndash; hadoop-annotations &ndash;&gt;
-                <dependency>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-annotations</artifactId>
-                    <version>${cdh.version}</version>
-                </dependency>
-                &lt;!&ndash; hadoop-yarn-client &ndash;&gt;
-                <dependency>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-yarn-client</artifactId>
-                    <version>${cdh.version}</version>
-                </dependency>
-                &lt;!&ndash; hadoop-minicluster &ndash;&gt;
-                <dependency>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-minicluster</artifactId>
-                    <version>${cdh.version}</version>
-                </dependency>-->
-
-        <!-- HBase 开始 -->
-        <!-- hbase-annotations -->
-        <!-- <dependency>
-             <groupId>org.apache.hbase</groupId>
-             <artifactId>hbase-annotations</artifactId>
-             <version>${hbase.version}</version>
-             <exclusions>
-                 <exclusion>
-                     <groupId>javax.servlet</groupId>
-                     <artifactId>*</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>-->
-
-        <!-- hbase-common -->
-        <!--<dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-common</artifactId>
-            <version>${hbase.version}</version>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${hadoop.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>*</artifactId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-annotations</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-yarn-client</artifactId>
+            <version>${hadoop.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-minicluster</artifactId>
+            <version>${hadoop.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-        <!-- hbase-client -->
-       <!-- <dependency>
+        <!-- HBase 开始 -->
+        <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>${hbase.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>*</artifactId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>-->
-
-        <!-- hbase-server -->
-        <!--<dependency>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-server</artifactId>
             <version>${hbase.version}</version>
-            &lt;!&ndash; maven排除依赖jar处理 &ndash;&gt;
+        </dependency>
+
+        <!-- hive -->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-service</artifactId>
+            <version>${hive.version}</version>
             <exclusions>
                 <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
                     <groupId>javax.servlet</groupId>
-                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>avatica</artifactId>
+                    <groupId>org.apache.calcite.avatica</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>-->
-
-        <!-- hbase-hadoop-compat -->
-        <!--<dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-hadoop-compat</artifactId>
-            <version>${hbase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-metastore</artifactId>
+            <version>${hive.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>*</artifactId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>-->
-
-        <!-- hbase-prefix-tree -->
-        <!--<dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-prefix-tree</artifactId>
-            <version>${hbase.version}</version>
         </dependency>
-
-        &lt;!&ndash; hbase-protocol &ndash;&gt;
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-protocol</artifactId>
-            <version>${hbase.version}</version>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>${hive.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>javax.servlet</artifactId>
+                    <groupId>org.eclipse.jetty.orbit</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-        &lt;!&ndash; hbase-rest &ndash;&gt;
+        <!-- spark -->
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-rest</artifactId>
-            <version>${hbase.version}</version>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala.version}</version>
         </dependency>
-
-        &lt;!&ndash; hbase-thrift &ndash;&gt;
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-thrift</artifactId>
-            <version>${hbase.version}</version>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
         </dependency>
--->
-        <!-- hbase-secondaryind -->
-        <!--<dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-secondaryind</artifactId>
-            <version>${hbase.version}</version>
-        </dependency> -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-actors</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${spark-scala-version}</artifactId>
+            <version>${spark.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${spark-scala-version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <!--catalyst是SparkSQL的核心组件(查询优化器)，它负责将SQL语句转换成物理执行计划 -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-catalyst_${spark-scala-version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_${spark-scala-version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-yarn_${spark-scala-version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_${spark-scala-version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
 
-
-         <!-- hbase-hbase-secondaryindex -->
-        <!--<dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-secondaryindex</artifactId>
-            <version>${hbase.version}</version>
-        </dependency>-->
-
-        <!-- HBase indesx 开始 -->
-        <!-- <dependency>
-             <groupId>com.ngdata</groupId>
-             <artifactId>hbase-indexer-cli</artifactId>
-             <version>1.5-cdh5.7.1</version>
-         </dependency>-->
-
-        <!--<dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-indexer-common</artifactId>
-            <version>${hbase.index.version}</version>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-indexer-demo</artifactId>
-            <version>${hbase.index.version}</version>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-indexer-dist</artifactId>
-            <version>${hbase.index.version}</version>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-indexer-engine</artifactId>
-            <version>${hbase.index.version}</version>
-        </dependency>-->
-        <!-- <dependency>
-
-             <groupId>com.ngdata</groupId>
-             <artifactId>hbase-indexer-server</artifactId>
-             <version>${hbase.index.version}</version>
-         </dependency>-->
-
-        <!--<dependency>
-            <groupId>com.ngdata</groupId>
-            <artifactId>hbase-indexer-mr</artifactId>
-            <version>${hbase.index.version}</version>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-secondaryindex</artifactId>
-            <version>1.2.0</version>
-        </dependency>-->
-
-        <!-- htrace-core -->
+        <!--依赖相关冲突 解决 -->
+        <!-- jackson. 解决spring与spark冲突问题-->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>${codehaus.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${codehaus.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-paranamer</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-scala_${spark-scala-version}</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!-- http spark冲突 -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${httpcore.version}</version>
+        </dependency>
+        <!-- guava, spring、hbase冲突-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <!-- htrace-core hbase依赖包冲突问题-->
         <dependency>
             <groupId>org.htrace</groupId>
             <artifactId>htrace-core</artifactId>
             <version>${htrace.verion}</version>
         </dependency>
+        <!-- netty 解决spring和hbase依赖冲突问题-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty-all.version}</version>
+        </dependency>
+        <!-- netty 解决spring和hadoop、sprk等依赖冲突问题-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
 
+        <!-- 其他依赖 -->
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- logback 日志 与slf4j-log4j12冲突-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>${logback-ext-spring.version}</version>
+        </dependency>
         <!-- dom4j -->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
+            <version>${dom4j.version}</version>
         </dependency>
-
-        <!-- hive -->
-        <!-- hive-metastore -->
-        <!-- <dependency>
-             <groupId>org.apache.hive</groupId>
-             <artifactId>hive-metastore</artifactId>
-             <version>${hive.version}</version>
-             &lt;!&ndash; maven排除依赖jar处理 &ndash;&gt;
-             <exclusions>
-                 <exclusion>
-                     <groupId>javax.servlet</groupId>
-                     <artifactId>*</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>-->
-
-        <!-- spark -->
-        <!-- spark-core_2.10 -->
+        <!-- oracle -->
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.10</artifactId>
-            <version>${spark.version}</version>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${ojdbc6.version}</version>
         </dependency>
-
-        <!-- spark-sql_2.10 -->
+        <!-- xmlbeans -->
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.10</artifactId>
-            <version>${spark.version}</version>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>${xmlbeans.version}</version>
         </dependency>
-
-        <!-- spark-hive_2.10 -->
-       <!-- <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_2.10</artifactId>
-            <version>${spark.version}</version>
-        </dependency>-->
-
-        <!-- spark-streaming_2.10 -->
+        <!-- fastJson json有关的 -->
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.10</artifactId>
-            <version>${spark.version}</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
 
     </dependencies>
+
 
 </project>

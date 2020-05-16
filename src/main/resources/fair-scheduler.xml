@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocations>
+  <userMaxAppsDefault>30</userMaxAppsDefault>
+  <queue name="root">
+    <minResources>512mb,1vcores</minResources>
+    <maxResources>1024mb,2vcores</maxResources>
+    <maxRunningApps>100</maxRunningApps>
+    <weight>1.0</weight>
+    <schedulingMode>fair</schedulingMode>
+    <aclSubmitApps>hadoop,root,dr.who</aclSubmitApps>
+    <aclAdministerApps>hadoop,root,dr.who</aclAdministerApps>
+
+    <queue name="default">
+      <minResources>256mb,1vcores</minResources>
+      <maxResources>512mb,1vcores</maxResources>
+      <maxRunningApps>100</maxRunningApps>
+      <schedulingMode>fair</schedulingMode>
+      <weight>1.0</weight>
+      <aclSubmitApps>*</aclSubmitApps>
+      <aclAdministerApps>hadoop,root,dr.who</aclAdministerApps>
+    </queue>
+
+    <queue name="businessA">
+      <minResources>256mb,1vcores</minResources>
+      <maxResources>512mb,1vcores</maxResources>
+      <maxRunningApps>100</maxRunningApps>
+      <schedulingMode>fair</schedulingMode>
+      <weight>1.0</weight>
+      <aclSubmitApps>*</aclSubmitApps>
+      <aclAdministerApps>*</aclAdministerApps>
+    </queue>
+
+  </queue>
+</allocations>

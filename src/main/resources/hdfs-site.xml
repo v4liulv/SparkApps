@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+        <description>文件副本数</description>
+    </property>
+    <property>    
+        <name>dfs.namenode.name.dir</name>    
+        <value>file:/hadoop/data/dfs/namenode</value>
+        <description>namenode数据存储本地目录</description>
+    </property>    
+    <property>    
+        <name>dfs.datanode.data.dir</name>    
+        <value>file:/hadoop/data/dfs/datanode</value>
+        <description>data node数据存储本地目录</description>
+    </property>
+	<property>    
+        <name>dfs.permissions</name>    
+        <value>false</value>
+        <description>是否启用hdfs权限检查</description>
+    </property>
+    <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>false</value>
+        <description>使用 DataNode 主机名称</description>
+    </property>
+    <property>
+        <name>dfs.blocksize</name>
+        <value>67108864</value>
+        <description>文件块大小，默认为64M</description>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir.perm</name>
+        <value>755</value>
+        <description>DataNode 数据目录权限</description>
+    </property>
+	
+</configuration>
