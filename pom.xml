@@ -34,7 +34,7 @@
         <!-- java wbe ssh -->
         <servlet.version>3.0-alpha-1</servlet.version>
         <hibernate.version>5.2.11.Final</hibernate.version>
-        <spring.version>5.0.8.RELEASE</spring.version>
+        <spring.version>5.2.6.RELEASE</spring.version>
         <spring.hadoop.version>2.5.0.RELEASE</spring.hadoop.version>
         <jstl.version>1.2</jstl.version>
 
