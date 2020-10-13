@@ -49,7 +49,7 @@
         <guava.version>r03</guava.version>
 
         <!-- 其他Jar包 -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <dom4j.version>1.6.1</dom4j.version>
         <xmlbeans.version>2.6.0</xmlbeans.version>
         <logback.version>1.2.3</logback.version>
