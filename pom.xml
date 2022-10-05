@@ -39,7 +39,7 @@
         <jstl.version>1.2</jstl.version>
 
         <!--冲突解决 -->
-        <jackson.version>2.11.0</jackson.version>
+        <jackson.version>2.12.6.1</jackson.version>
         <codehaus.jackson.version>1.8.8</codehaus.jackson.version>
         <htrace.verion>3.0.4</htrace.verion>
         <netty.version>3.9.9.Final</netty.version>
